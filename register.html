@@ -1,0 +1,45 @@
+<?php
+include('db.php');
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nic = $_POST['nic'];
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $tel = $_POST['tel'];
+    $course = $_POST['course'];
+
+    $sql = "INSERT INTO students (NIC, Name, Address, Tel, Course) VALUES ('$nic', '$name', '$address', '$tel', '$course')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Student registered successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+    <h1>Student Registration</h1>
+    <form method="post">
+        <!--<label>NIC</label>-->
+        <input id="input" type="text" name="nic" placeholder="Eneter Your NIC Number" required>
+        <!--<label>Name</label>-->
+        <input id="input" type="text" name="name" placeholder="Enter Your Name" required>
+        <!--<label>Address</label>-->
+        <input id="input" type="text" name="address" placeholder="Enter Your Address" required>
+        <!--<label>Telphone No</label>-->
+        <input id="input" type="text" name="tel" placeholder="Enter Your Telephone Number">
+        <!--<label>Course</label>-->
+        <input id="input" type="text" name="course" placeholder="Enter Your Course" required>
+        <button id="btn" type="submit">Register</button>
+    </form>
+</body>
+</html>
